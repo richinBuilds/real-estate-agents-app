@@ -7,5 +7,6 @@ const mongoose = require('mongoose');
        images: [{ type: String }], // Optional array
        createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
      });
+     
 
      module.exports = mongoose.model('Property', propertySchema);
