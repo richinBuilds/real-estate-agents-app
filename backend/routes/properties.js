@@ -26,6 +26,16 @@ const express = require('express');
       }
     });
 
+    // Get featured properties
+router.get('/featured', async (req, res) => {
+  try {
+    const properties = await Property.find({ featured: true }).populate('createdBy', 'firstName');
+    res.json(properties);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
     // Get a single property by ID
     router.get('/:id', async (req, res) => {
       try {
@@ -46,14 +56,15 @@ const express = require('express');
         if (user.role !== 'admin') {
           return res.status(403).json({ message: 'Access denied' });
         }
-        const { title, description, price } = req.body;
+        const { title, description, price, featured  } = req.body;
         const images = req.files ? req.files.map(file => `/uploads/${file.filename}`) : [];
         const property = new Property({
           title,
           description,
           price,
           images,
-          createdBy: user.userId
+          createdBy: user.userId,
+          featured: featured === 'true'
         });
         await property.save();
         res.status(201).json(property);
@@ -69,7 +80,7 @@ const express = require('express');
         if (user.role !== 'admin') {
           return res.status(403).json({ message: 'Access denied' });
         }
-        const { title, description, price, existingImages } = req.body;
+        const { title, description, price, existingImages, featured} = req.body;
         const images = req.files ? req.files.map(file => `/uploads/${file.filename}`) : [];
         const updatedImages = existingImages ? JSON.parse(existingImages) : [];
         const property = await Property.findById(req.params.id);
@@ -80,6 +91,7 @@ const express = require('express');
         property.description = description || property.description;
         property.price = price || property.price;
         property.images = [...updatedImages, ...images];
+        property.featured = featured === 'true' || property.featured;
         await property.save();
         res.json(property);
       } catch (error) {
