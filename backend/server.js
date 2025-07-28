@@ -21,7 +21,11 @@ mongoose.connect('mongodb://localhost:27017/realestate', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-  .then(() => console.log('MongoDB connected'))
+  .then(() => {
+    console.log('MongoDB connected');
+    // Create TTL index for OTPs to auto-delete after expiration
+    mongoose.connection.db.collection('otps').createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 });
+  })
   .catch(err => console.error('MongoDB connection error:', err));
 
  // Routes
