@@ -1,0 +1,42 @@
+<div class="upload-container">
+    <h1 class="form-title">{{propertyToEdit ? 'Edit Property' : 'Add Property'}}</h1>
+    <form #propertyForm="ngForm" (ngSubmit)="addProperty()">
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input [(ngModel)]="property.title" name="title" type="text" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea [(ngModel)]="property.description" name="description" class="form-input" required></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Price</label>
+        <input [(ngModel)]="property.price" name="price" type="number" class="form-input" required>
+      </div>
+
+      <div class="form-group" *ngIf="authService.isAdmin()">
+        <label class="form-label">Featured Listing</label>
+        <input [(ngModel)]="property.featured" name="featured" type="checkbox" class="form-checkbox">
+      </div>
+
+
+      <div class="form-group">
+        <label class="form-label">Images (up to 5)</label>
+        <input type="file" multiple accept="image/*" (change)="onFileChange($event)" class="form-input">
+        <div *ngIf="property.existingImages && property.existingImages.length > 0" class="image-list">
+          <div *ngFor="let img of property.existingImages; let i = index">
+            <img [src]="img || ''" alt="Existing Image" style="width: 100px; height: 100px;">
+            <button type="button" (click)="property.existingImages.splice(i, 1)">Remove</button>
+          </div>
+        </div>
+        <div *ngIf="property.images && property.images.length > 0" class="image-list">
+          <p *ngFor="let img of property.images">{{img.name || 'Unnamed file'}}</p>
+        </div>
+      </div>
+      <div class="form-buttons">
+        <button type="submit" class="submit-button" [disabled]="propertyForm.invalid">Submit</button>
+        <button type="button" (click)="goBack()" class="back-button">Back</button>
+        <button type="button" (click)="close.emit()" class="cancel-button">Cancel</button>
+      </div>
+    </form>
+  </div>

@@ -1,0 +1,92 @@
+.app-container {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    color: white;
+  }
+
+  .nav-bar {
+    padding: 40px 40px; /* more vertical padding */
+    height: auto;       /* let height grow with padding */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* vertical center */
+  }
+  
+  
+  /* The blurred background image */
+  .background-image {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('/assets/homepage/home_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(4px);
+    z-index: 0;
+  }
+  
+  /* Content wrapper that sits on top, not blurred */
+  .content-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+  
+
+  .banner-image {
+    position: relative; /* This is crucial */
+    width: 100%; /* Adds left/right spacing */
+    height: 500px;
+    background-image: url('/assets/homepage/background-hosue.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto; /* vertical spacing + centered */
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .banner-image::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* dim level */
+    z-index: 0;
+  }
+
+  .banner-text {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.0);
+    padding: 20px 10px;
+    border-radius: 12px;
+    text-align: center;
+    z-index: 2;
+    font-size: 2.0rem;
+    font-weight: bold;
+    line-height: 1.4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .banner-text .name {
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+
+  .phone-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 8px;
+    vertical-align: middle;
+
+  }

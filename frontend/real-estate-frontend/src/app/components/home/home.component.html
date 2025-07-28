@@ -1,0 +1,91 @@
+<div class="home-container">
+
+  <h1 class="home-title">Properties</h1>
+  <div *ngIf="authService.isLoggedIn() && authService.isAdmin()">
+    <button (click)="showUploadForm = true" class="add-button">Add Property</button>
+  </div>
+  <app-property-upload *ngIf="showUploadForm" [propertyToEdit]="propertyToEdit"
+    (close)="showUploadForm = false; propertyToEdit = null"></app-property-upload>
+
+  <div class="property-list-container">
+    <div class="horizontal-scroll-wrapper">
+      <div class="property-grid">
+        <div *ngFor="let property of properties" class="property-card">
+          <a [routerLink]="['/property', property._id]" class="property-link">
+            <h2 class="property-title">{{property.title}}</h2>
+          </a>
+          <p>{{property.description}}</p>
+          <p class="property-price">${{property.price}}</p>
+          <div *ngIf="property.images && property.images.length > 0" class="property-image">
+            <img [src]="property.images[0] || ''" alt="Property Image">
+          </div>
+          <p class="property-creator">Posted by: {{property.createdBy?.firstName || 'Unknown'}}</p>
+          <div *ngIf="authService.isLoggedIn() && authService.isAdmin()" class="action-buttons">
+            <button (click)="editProperty(property)" class="edit-button">Edit</button>
+            <button (click)="deleteProperty(property._id)" class="delete-button">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+
+<!--hidden before registration-->
+<ng-template #notLoggedIn>
+  <div class="not-logged-in-message">
+    <p>
+      Please <a [routerLink]="['/login']">login</a> or
+      <a [routerLink]="['/register']">register</a> to view featured listings.
+    </p>
+  </div>
+</ng-template>
+
+
+<div class="featured-title-wrapper">
+<h1 class="featured-title">Featured Listings</h1>
+</div>
+<div *ngIf="authService.isLoggedIn(); else notLoggedIn">
+  <div class="property-list-container">
+    <div class="horizontal-scroll-wrapper">
+      <div class="property-grid">
+        <div *ngFor="let property of featuredProperties" class="property-card">
+          <a [routerLink]="['/property', property._id]" class="property-link">
+            <h2 class="property-title">{{property.title}}</h2>
+          </a>
+          <p>{{property.description}}</p>
+          <p class="property-price">${{property.price}}</p>
+          <div *ngIf="property.images && property.images.length > 0" class="property-image">
+            <img [src]="property.images[0] || ''" alt="Property Image">
+          </div>
+          <p class="property-creator">Posted by: {{property.createdBy?. firstName || 'Unknown'}}</p>
+          <div *ngIf="authService.isLoggedIn() && authService.isAdmin()" class="action-buttons">
+            <button (click)="editProperty(property)" class="edit-button">Edit</button>
+            <button (click)="deleteProperty(property._id)" class="delete-button">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Footer Section -->
+<div class="footer-section">
+  <h3 class="footer-heading">Stay Connected</h3>
+<p class="footer-tagline">Follow us on social media or reach out by email</p>
+  <div class="footer-content">
+    <div class="social-icons">
+      <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+        <img src="/assets/icons/Facebook_Logo_Primary.png" alt="Facebook" />
+      </a>
+      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+        <img src="/assets/icons/Instagram_Glyph_Gradient.png" alt="Instagram" />
+      </a>
+      <a href="mailto:joeljoseph@gmail.com" target="_blank" aria-label="Email">
+        <img src="/assets/icons/email.png" alt="Email" />
+      </a>
+    </div>
+  </div>
+</div>

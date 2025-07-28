@@ -1,0 +1,28 @@
+<div class="app-container">
+  <div class="background-image"></div>
+  
+  <div class="content-wrapper">
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <a routerLink="/" class="nav-title">Joel Joseph</a>
+        <div class="nav-links">
+          <a *ngIf="!authService.isLoggedIn()" routerLink="/" class="nav-link">Home</a>
+          <a *ngIf="!authService.isLoggedIn()" routerLink="/login" class="nav-link">Login</a>
+          <a *ngIf="!authService.isLoggedIn()" routerLink="/register" class="nav-link">Register</a>
+          <button *ngIf="authService.isLoggedIn()" (click)="logout()" class="logout-button">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="banner-image"  *ngIf="showBanner">
+      <div class="banner-text">
+        <div class="line name">Joel Joseph</div>
+        <div class="line title">Agent</div>
+        <div class="line Contact">
+          <img src="/assets/icons/phone.png" class="phone-icon"> : 123-456-7890</div>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

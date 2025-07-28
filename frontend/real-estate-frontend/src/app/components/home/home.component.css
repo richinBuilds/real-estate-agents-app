@@ -1,0 +1,221 @@
+.home-container {
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+  .home-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: black;
+  }
+  .add-button {
+    background-color: #0066cc;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  .add-button:hover {
+    background-color: #0055aa;
+  }
+  .property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  .property-card {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  .property-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  .property-link {
+    text-decoration: none;
+    color: #0066cc;
+  }
+  .property-link:hover {
+    text-decoration: underline;
+  }
+  .property-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #0066cc;
+  }
+  .property-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+  }
+  .property-creator {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .edit-button {
+    background-color: #28a745;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .edit-button:hover {
+    background-color: #218838;
+  }
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+
+  .property-list-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px auto; /* center horizontally */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow-x: hidden;
+    
+    width: 90%;          /* increase width */
+    max-width: 2600px;   /* optional limit */
+  }
+
+  .horizontal-scroll-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 10px;
+  }
+
+  .property-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    padding-bottom: 10px;
+  }
+  
+  .property-card {
+    flex: 0 0 300px; /* fixed width for each card */
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #222;
+    white-space: normal;
+  }
+
+  /* footer section*/
+  .footer-section {
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 40px 10px;
+    text-align: center;
+    position: relative;
+    left: 0;
+    right: 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .social-icons a img {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    transition: transform 0.2s ease;
+  }
+  
+  .social-icons a img:hover {
+    transform: scale(1.2);
+  }
+  
+  .footer-email a {
+    color: #00bcd4;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  
+  .footer-email a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (min-width: 768px) {
+    .footer-content {
+      flex-direction: row;
+      justify-content: center; /* 🔧 Changed from space-between */
+      gap: 40px;               /* Optional spacing between logo and email */
+      padding: 0 40px;
+    }
+  }
+  
+
+  /*only for logged in users*/
+
+  /* Style the not-logged-in message */
+  .not-logged-in-message {
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 600px;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .not-logged-in-message p {
+    font-size: 1.1rem;
+  }
+  
+  .not-logged-in-message a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .not-logged-in-message a:hover {
+    text-decoration: underline;
+  }
+  
+  .featured-title-wrapper {
+    text-align: center;
+  }
+  .featured-title {
+    display: inline-block;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 2rem auto 1.5rem;
+    color: #333;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 0.5rem;
+  }
+  

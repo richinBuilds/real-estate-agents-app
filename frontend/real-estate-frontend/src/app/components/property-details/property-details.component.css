@@ -1,0 +1,77 @@
+.details-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+  .details-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  .details-description {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .details-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #0066cc;
+    margin-bottom: 1rem;
+  }
+  .details-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .details-image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    object-fit: cover;
+    
+  }
+  .property-creator {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .edit-button {
+    background-color: #28a745;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .edit-button:hover {
+    background-color: #218838;
+  }
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  .back-button {
+    background-color: #0066cc;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .back-button:hover {
+    background-color: #0055aa;
+  }

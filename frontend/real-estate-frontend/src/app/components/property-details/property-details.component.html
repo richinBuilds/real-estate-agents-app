@@ -1,0 +1,20 @@
+
+<div class="details-container">
+    <h1 class="details-title">{{property?.title}}</h1>
+    <div *ngIf="property; else loading">
+      <p class="details-description">{{property.description}}</p>
+      <p class="details-price">${{property.price}}</p>
+      <div *ngIf="property.images && property.images.length > 0" class="details-images">
+        <img *ngFor="let img of property.images" [src]="img || ''" alt="Property Image" class="details-image">
+      </div>
+      <p class="property-creator">Posted by: {{property.createdBy?.firstName || 'Unknown'}}</p>
+      <div *ngIf="authService.isLoggedIn() && authService.isAdmin()" class="action-buttons">
+        <button (click)="editProperty()" class="edit-button">Edit</button>
+        <button (click)="deleteProperty()" class="delete-button">Delete</button>
+      </div>
+      <button (click)="goBack()" class="back-button">Back to Properties</button>
+    </div>
+    <ng-template #loading>
+      <p>Loading property...</p>
+    </ng-template>
+  </div>

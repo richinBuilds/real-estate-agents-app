@@ -1,0 +1,159 @@
+<div class="register-container">
+    <h1 class="form-title">Register</h1>
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+
+      <!--<div class="form-group">
+        <label class="form-label">Username</label>
+        <input name="username" [(ngModel)]="user.username" type="text" class="form-input" required>
+      </div>-->
+      <div class="form-group">
+        <label class="form-label">First Name</label>
+        <input name="firstName" [(ngModel)]="user.firstName" type="text" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last Name</label>
+        <input name="lastName" [(ngModel)]="user.lastName" type="text" class="form-input" required>
+      </div>
+      <!--email-->
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input
+          name="email"
+          [(ngModel)]="user.email"
+          #emailRef="ngModel"
+          type="email"
+          class="form-input"
+          required
+          email
+          placeholder="your@email.com"
+        >
+        <div *ngIf="emailRef.invalid && emailRef.touched" class="error-message">
+          <div *ngIf="emailRef.errors?.['required']">Email is required.</div>
+          <div *ngIf="emailRef.errors?.['email']">Invalid email format.</div>
+        </div>
+      </div>
+
+<div class="form-group">
+  <label class="form-label">I am a:</label>
+  <select name="iam" [(ngModel)]="user.iam" class="form-input" required>
+    <option value="buyer">Buyer</option>
+    <option value="seller">Seller</option>
+    <option value="renter">Renter</option>
+    <option value="agent">Agent</option>
+  </select>
+</div>
+
+<!--phone number-->
+<div class="form-group">
+  <label class="form-label">Country Code</label>
+  <select name="countryCode" [(ngModel)]="user.countryCode" class="form-input" required>
+    <option value="+1">+1 (US/Canada)</option>
+
+  </select>
+</div>
+
+<div class="form-group">
+  <label class="form-label">Phone Number</label>
+  <input
+    name="phone"
+    [(ngModel)]="user.phone"
+    #phoneRef="ngModel"
+    type="tel"
+    class="form-input"
+    required
+    pattern="^[2-9][0-9]{9}$"
+    placeholder="e.g. 4165551234"
+  >
+  <small>Enter 10-digit phone number without country code</small>
+  <div *ngIf="phoneRef.invalid && phoneRef.touched" class="error-message">
+    <div *ngIf="phoneRef.errors?.['required']">Phone number is required.</div>
+    <div *ngIf="phoneRef.errors?.['pattern']">Phone number must be 10 digits and valid for US/Canada.</div>
+  </div>
+</div>
+
+<!-- password-->
+<!--
+<div class="form-group">
+  <label class="form-label">Password</label>
+  <input name="password"  [(ngModel)]="user.password" type="password" class="form-input" required>
+</div>  -->
+<div class="form-group">
+      <label class="form-label">Password</label>
+      <input
+        name="password"
+        [(ngModel)]="user.password"
+        type="password"
+        class="form-input"
+        required
+        #passwordRef="ngModel"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+      >
+      <div *ngIf="passwordRef.invalid && passwordRef.touched" class="error-message">
+        <div *ngIf="passwordRef.errors?.['required']">Password is required.</div>
+        <div *ngIf="passwordRef.errors?.['pattern']">
+          Password must be at least 8 characters, include uppercase, lowercase, number, and special character.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Retype Password</label>
+      <input
+        name="confirmPassword"
+        [(ngModel)]="user.confirmPassword"
+        type="password"
+        class="form-input"
+        required
+        #confirmPasswordRef="ngModel"
+      >
+      <div *ngIf="confirmPasswordRef.touched && user.password !== user.confirmPassword" class="error-message">
+        Passwords do not match.
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="showOTPField">
+      <label class="form-label">Verification Code</label>
+      <input
+        name="otp"
+        [(ngModel)]="user.otp"
+        type="text"
+        class="form-input"
+        maxlength="6"
+        required
+        #otpRef="ngModel"
+      >
+      <div *ngIf="otpRef.invalid && otpRef.touched" class="error-message">
+        Verification code is required (6 digits).
+      </div>
+    </div>
+
+
+<!--
+      <div class="form-group">
+        <label class="form-label">Role</label>
+        <select name="role" [(ngModel)]="user.role" class="form-input">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+-->
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+  
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-error">
+    {{ errorMessage }}
+  </div>
+  
+      
+     <button type="button" *ngIf="!showOTPField" (click)="sendOTP()" class="submit-button" [disabled]="isSubmitting || !registerForm.valid">
+      Send Verification Code
+    </button>
+    <button type="submit" *ngIf="showOTPField" class="submit-button" [disabled]="isSubmitting || !registerForm.valid">
+      Verify and Register
+    </button>
+    </form>
+    <p class="form-footer">Already have an account? <a routerLink="/login" class="link">Login</a></p>
+  </div>
